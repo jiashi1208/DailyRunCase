@@ -250,20 +250,17 @@ public class ToolKit {
 		{
 			solo.clickOnText("我的");
 			//solo.clickOnText("工具");
-			solo.sleep(PAUSE_TIME);
-			
+			solo.waitForText("离线地图", 1, PAUSE_TIME*2);
 			solo.clickOnText("离线地图");
-			solo.sleep(PAUSE_TIME);
-			
+			solo.waitForText(strCityName, 1, PAUSE_TIME*2);
 			solo.clickOnText(strCityName);
-			solo.sleep(PAUSE_TIME);
-			
+			solo.waitForText("查看地图", 1, PAUSE_TIME*2);
 			solo.clickOnText("查看地图");
-			solo.sleep(PAUSE_TIME);
+			solo.waitForText("路线", 1, PAUSE_TIME*2);
 		}else if( 1 == type )
 		{
-			solo.sleep(PAUSE_TIME);
-			solo.clickOnText("搜索");
+			solo.clickOnText("搜地点");
+			solo.waitForText("搜索", 1, PAUSE_TIME*2);
 			solo.enterText(0, "北京");
 			solo.clickOnText("搜索");
 		}
@@ -302,9 +299,8 @@ public class ToolKit {
 		solo.clearEditText(0);
        // inputQuery_SearchBoxPage("搜索"); //为啥不能执行，需要查看下。
 		solo.enterText(0, strKey);
-		solo.sleep(PAUSE_TIME*2);
+		solo.waitForText("搜索", 1, PAUSE_TIME*2);
 		clickOnText(0, "搜索", PAUSE_TIME*2);
-		solo.sleep(PAUSE_TIME);
 	}
 	
 	public boolean SearchForText( String strKey, String vrst ){
@@ -313,7 +309,6 @@ public class ToolKit {
 	
 	public boolean SearchForText( String strKey, String vrst, int timeout ){
 		SearchForText(strKey);
-		solo.sleep(PAUSE_TIME);
 		return solo.waitForText(vrst, 0, timeout);
 	}
 	
@@ -346,8 +341,8 @@ public class ToolKit {
 				solo.getView(mine_int);
 				break;
 			} catch (Throwable e) {
-				sleep(PAUSE_TIME / 2);
 				solo.goBack();
+				sleep(PAUSE_TIME / 2);
 				continue;
 			}
 		}
